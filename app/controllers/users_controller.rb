@@ -2,16 +2,15 @@ class UsersController < ApplicationController
   # chama a view por default no users new (caso não especificado)
 
   def show
-  @user = User.find(params[:id])
-  end
+    @user = User.find(params[:id])
+end
 
   def new
     @user = User.new
   end
 
-  # método create, o params q é o importante, caso de erro, ele faz reload da pag de criação
   def create
-    @user = User.new(params[user_params])
+    @user = User.new(user_params)
     if @user.save
       redirect_to @user,
                   notice: 'Cadastro criado com sucesso!'
@@ -20,11 +19,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+      if @user.update(user_params)
+        redirect_to @user,
+        notice: 'Cadastro atualizado com sucesso!'
+      else
+        render action: :edit
+      end
+  end
+
   private
 
   def user_params
     params.
-      require(:user).
-      permit(:email, :full_name, :location, :password, :password_confirmation, :bio)
+    require(:user).
+    permit(:email, :full_name, :location, :password,
+              :password_confirmation, :bio)
   end
+
 end
