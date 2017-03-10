@@ -1,0 +1,28 @@
+pt:
+activerecord:
+models:
+user: Usuário
+room: Quarto
+attributes:
+user:
+  new:
+    title: Cadastro
+  edit:
+    title: Editar perfil
+  show:
+    title: "Perfil: %{user_name}"
+    edit: 'Editar perfil'
+    location: "Localização: %{location}"
+    bio: "Bio: %{bio}"
+  full_name: Nome completo
+  location: Localização
+  email: Email
+  password: Senha
+  password_confirmation: Confirme sua senha
+  bio: Biografia
+room:
+  description: Descrição
+  location: Localização
+  title: Título
+links:
+  back: Voltar
